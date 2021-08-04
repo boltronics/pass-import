@@ -44,7 +44,8 @@ class CSV(Formatter, PasswordImporter):
             entry = dict()
             for col in row:
                 entry[keys.get(col, col)] = row.get(col, None)
-
+            if self.root and not entry.get('group', '').startswith(self.root):
+                continue
             self.data.append(entry)
 
     # Format recognition methods
